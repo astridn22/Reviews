@@ -13,8 +13,8 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang="en">
       <body className="container m-auto grid min-h-screen grid-rows-[auto,1fr,auto] bg-background px-4 font-sans antialiased">
-        <header className="text-xl font-bold leading-[4rem]">
-          <Link href="/">Reviews</Link>
+        <header className="m-6 rounded-3xl bg-violet-200 text-center text-5xl font-semibold leading-[5rem] tracking-wide text-neutral-800 shadow-md shadow-gray-400">
+          <h1>PRODUCTOS</h1>
         </header>
         <main className="py-8">{children}</main>
         <footer className="text-center leading-[4rem] opacity-70">
@@ -24,3 +24,6 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
     </html>
   );
 }
+
+// dentro del header
+//<Link href="/">Reviews</Link>
