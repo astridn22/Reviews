@@ -1,5 +1,7 @@
 import {} from "../components/ui/mock_data_sistema_resenas.json";
 import {MessageSquareText} from "lucide-react";
+import { Label } from "@/components/ui/label"
+import { Input } from "@/components/ui/input"
 
 import {Button} from "@/components/ui/button";
 import {
@@ -17,6 +19,16 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogFooter,
+} from "@/components/ui/dialog"
+
 
 //const products: [id: number, name: string, description: string, price: number];
 
@@ -61,10 +73,67 @@ export default function HomePage() {
                     <p>{x.description}</p>
                   </CardContent>
                   <CardFooter className="justify-between">
-                    <Button className="h-8 w-48 bg-[#b2a2bc] text-center font-semibold tracking-wide text-black hover:bg-[#9e8aab] focus:bg-[#9e8aab] focus:text-white">
-                      Agregar Reseña
-                    </Button>
-                    <MessageSquareText className="mr-2 size-7 h-8 stroke-[1.5px] text-center" />
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button className="h-8 w-48 bg-[#b2a2bc] text-center font-semibold tracking-wide text-black hover:bg-[#9e8aab] focus:bg-[#9e8aab] focus:text-white">
+                          Agregar Reseña
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="sm:max-w-[425px] rounded-[18px] bg-neutral-100 shadow-lg">
+                        <DialogHeader>
+                          <DialogTitle>Agregar Reseña</DialogTitle>
+                        </DialogHeader>
+                        <div className="grid gap-4 py-4">
+                          <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="name" className="text-left">
+                              Nombre
+                            </Label>
+                            <Input
+                              id="name"
+                              placeholder="Pedro Duarte"
+                              className="col-span-3"
+                            />
+                          </div>
+                          <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="email" className="text-left">
+                              Email
+                            </Label>
+                            <Input
+                              id="email"
+                              placeholder="peduarte@gmail.com"
+                              className="col-span-3"
+                              type="email"
+                            />
+                          </div>
+                          <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="coment" className="text-left">
+                              Comentario
+                            </Label>
+                            <Input
+                              id="coment"
+                              placeholder="Muy buen producto!"
+                              className="col-span-3"
+                            />
+                          </div>
+                        </div>
+                        <DialogFooter>
+                        <Button variant="outline">Cancelar</Button>
+                          <Button className="bg-[#b2a2bc] tracking-wide text-black hover:bg-[#9e8aab] focus:bg-[#9e8aab] focus:text-white" type="submit">Aceptar</Button>
+                        </DialogFooter>
+                      </DialogContent>
+                    </Dialog>
+                    <Dialog>
+                    <DialogTrigger asChild>
+                      <Button variant="ghost" size="icon" className="mr-2">
+                        <MessageSquareText className="size-7 h-8 stroke-[1.5px]" />
+                      </Button> 
+                      </DialogTrigger>
+                      <DialogContent className="sm:max-w-[425px] rounded-[18px] bg-neutral-100 shadow-lg">
+                        <DialogHeader>
+                          <DialogTitle>Comentarios</DialogTitle>
+                        </DialogHeader>
+                      </DialogContent>
+                    </Dialog>
                   </CardFooter>
                 </Card>
               </div>
@@ -77,27 +146,3 @@ export default function HomePage() {
     </section>
   );
 }
-
-/*<Carousel className="w-full max-w-xs">
-      <CarouselContent>
-        {Array.from({ length: 5 }).map((_, index) => (
-          <CarouselItem key={index}>
-            <div className="p-1">
-            <Card className="my-10 w-72 bg-neutral-100 shadow-md">
-        <CardHeader>
-          <img alt="Auriculares Bluetooth" />
-          <CardTitle>Auriculares Bluetooth</CardTitle>
-          <CardDescription className="text-base font-semibold text-black">
-            USD 59.99
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p>Auriculares inalámbricos con cancelación de ruido</p>
-        </CardContent>
-        <CardFooter className="gap-2">
-          <Button className="bg-violet-500">Agregar Reseña</Button>
-          <Button>Coments</Button>
-        </CardFooter>
-      </Card>
-            </div>
-          </CarouselItem>*/
