@@ -1,8 +1,8 @@
 import {} from "../components/ui/mock_data_sistema_resenas.json";
-import {MessageSquareText} from "lucide-react";
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
+import {FileInput, MessageSquareText} from "lucide-react";
 
+import {Label} from "@/components/ui/label";
+import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import {
   Card,
@@ -27,8 +27,7 @@ import {
   DialogTitle,
   DialogTrigger,
   DialogFooter,
-} from "@/components/ui/dialog"
-
+} from "@/components/ui/dialog";
 
 //const products: [id: number, name: string, description: string, price: number];
 
@@ -79,56 +78,44 @@ export default function HomePage() {
                           Agregar Reseña
                         </Button>
                       </DialogTrigger>
-                      <DialogContent className="sm:max-w-[425px] rounded-[18px] bg-neutral-100 shadow-lg">
+                      <DialogContent className="rounded-[18px] bg-neutral-100 shadow-lg sm:max-w-[425px]">
                         <DialogHeader>
                           <DialogTitle>Agregar Reseña</DialogTitle>
                         </DialogHeader>
-                        <div className="grid gap-4 py-4">
-                          <div className="grid grid-cols-4 items-center gap-4">
-                            <Label htmlFor="name" className="text-left">
-                              Nombre
-                            </Label>
-                            <Input
-                              id="name"
-                              placeholder="Pedro Duarte"
-                              className="col-span-3"
-                            />
-                          </div>
-                          <div className="grid grid-cols-4 items-center gap-4">
-                            <Label htmlFor="email" className="text-left">
-                              Email
-                            </Label>
-                            <Input
-                              id="email"
-                              placeholder="peduarte@gmail.com"
-                              className="col-span-3"
-                              type="email"
-                            />
-                          </div>
-                          <div className="grid grid-cols-4 items-center gap-4">
-                            <Label htmlFor="coment" className="text-left">
-                              Comentario
-                            </Label>
-                            <Input
-                              id="coment"
-                              placeholder="Muy buen producto!"
-                              className="col-span-3"
-                            />
-                          </div>
+                        <div className="mt-4 flex flex-wrap items-center gap-2">
+                          <Label className=" text-left" htmlFor="name">
+                            Nombre
+                          </Label>
+                          <Input id="name" placeholder="Pedro Duarte" />
+                          <Label className="mt-3 text-left" htmlFor="email">
+                            Email
+                          </Label>
+                          <Input id="email" placeholder="peduarte@gmail.com" type="email" />
+                          <Label className="mt-3 text-left" htmlFor="coment">
+                            Comentario
+                          </Label>
+                          <Input id="coment" placeholder="Muy buen producto!" />
                         </div>
-                        <DialogFooter>
-                        <Button variant="outline">Cancelar</Button>
-                          <Button className="bg-[#b2a2bc] tracking-wide text-black hover:bg-[#9e8aab] focus:bg-[#9e8aab] focus:text-white" type="submit">Aceptar</Button>
+                        <DialogFooter className="mt-2 gap-2">
+                          <Button className="border-gray-300" variant="outline">
+                            Cancelar
+                          </Button>
+                          <Button
+                            className="bg-[#b2a2bc] tracking-wide text-black hover:bg-[#9e8aab] focus:bg-[#9e8aab] focus:text-white"
+                            type="submit"
+                          >
+                            Aceptar
+                          </Button>
                         </DialogFooter>
                       </DialogContent>
                     </Dialog>
                     <Dialog>
-                    <DialogTrigger asChild>
-                      <Button variant="ghost" size="icon" className="mr-2">
-                        <MessageSquareText className="size-7 h-8 stroke-[1.5px]" />
-                      </Button> 
+                      <DialogTrigger asChild>
+                        <Button className="mr-2" size="icon" variant="ghost">
+                          <MessageSquareText className="size-7 h-8 stroke-[1.5px]" />
+                        </Button>
                       </DialogTrigger>
-                      <DialogContent className="sm:max-w-[425px] rounded-[18px] bg-neutral-100 shadow-lg">
+                      <DialogContent className="rounded-[18px] bg-neutral-100 shadow-lg sm:max-w-[425px]">
                         <DialogHeader>
                           <DialogTitle>Comentarios</DialogTitle>
                         </DialogHeader>
