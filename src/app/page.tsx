@@ -22,11 +22,11 @@ import {
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
   DialogFooter,
+  DialogClose,
 } from "@/components/ui/dialog";
 
 //const products: [id: number, name: string, description: string, price: number];
@@ -78,11 +78,11 @@ export default function HomePage() {
                           Agregar Reseña
                         </Button>
                       </DialogTrigger>
-                      <DialogContent className="rounded-[18px] bg-neutral-100 shadow-lg sm:max-w-[425px]">
+                      <DialogContent className="rounded-[18px] bg-neutral-100 shadow-lg">
                         <DialogHeader>
                           <DialogTitle>Agregar Reseña</DialogTitle>
                         </DialogHeader>
-                        <div className="mt-4 flex flex-wrap items-center gap-2">
+                        <div className="relative mt-4 flex flex-wrap items-center gap-2">
                           <Label className=" text-left" htmlFor="name">
                             Nombre
                           </Label>
@@ -97,9 +97,11 @@ export default function HomePage() {
                           <Input id="coment" placeholder="Muy buen producto!" />
                         </div>
                         <DialogFooter className="mt-2 gap-2">
-                          <Button className="border-gray-300" variant="outline">
-                            Cancelar
-                          </Button>
+                          <DialogClose>
+                            <Button className="border-gray-300" variant="outline">
+                              Cancelar
+                            </Button>
+                          </DialogClose>
                           <Button
                             className="bg-[#b2a2bc] tracking-wide text-black hover:bg-[#9e8aab] focus:bg-[#9e8aab] focus:text-white"
                             type="submit"
