@@ -4,7 +4,7 @@ interface Product {
   description: string;
   price: number;
   image: string;
-  review: Review[];
+  reviews: Review[];
 }
 
 interface User {
@@ -47,7 +47,7 @@ export const products: Product[] = [
     description: "Auriculares inal\u00e1mbricos con cancelaci\u00f3n de ruido.",
     price: 59.99,
     image: "../images/img1.jpg",
-    review: [
+    reviews: [
       {
         id: "r1",
         productId: "p1",
@@ -72,7 +72,7 @@ export const products: Product[] = [
     description: "Tel\u00e9fono m\u00f3vil con pantalla de 6.5 pulgadas y 128GB de almacenamiento.",
     price: 299.99,
     image: "../images/img2.jpg",
-    review: [
+    reviews: [
       {
         id: "r3",
         productId: "p2",

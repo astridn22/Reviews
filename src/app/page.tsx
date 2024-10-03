@@ -37,23 +37,23 @@ export default function HomePage() {
     <section className="flex justify-center">
       <Carousel>
         <CarouselContent className="h-[600px] ">
-          {products.map((x) => (
-            <CarouselItem key={x.id} className="basis-auto px-10">
+          {products.map((product) => (
+            <CarouselItem key={product.id} className="basis-auto px-10">
               <div className="p-1">
                 <Card className="my-auto h-[550px] w-[350px] rounded-[18px] bg-neutral-100 shadow-lg">
                   <CardHeader>
                     <img
-                      alt={x.name}
+                      alt={product.name}
                       className="border-opacity-1 mb-2 rounded-[18px] border-2 border-gray-300"
-                      src={x.image}
+                      src={product.image}
                     />
-                    <CardTitle>{x.name}</CardTitle>
+                    <CardTitle>{product.name}</CardTitle>
                     <CardDescription className="text-lg font-semibold tracking-tight text-black">
-                      USD {x.price}
+                      USD {product.price}
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="tracking-tight">
-                    <p>{x.description}</p>
+                    <p>{product.description}</p>
                   </CardContent>
                   <CardFooter className="justify-between">
                     <Dialog>
@@ -104,20 +104,20 @@ export default function HomePage() {
                       <DialogContent className="rounded-[18px] bg-neutral-100 shadow-lg sm:max-w-[425px]">
                         <DialogHeader>
                           <DialogTitle className="text-xl">Reseñas</DialogTitle>
-                          {x.review.map((r) => {
-                            const user = users.find((u) => u.id === r.userId);
+                          {product.reviews.map((review) => {
+                            const user = users.find((user) => user.id === review.userId);
 
                             return (
-                              <div key={r.id}>
+                              <div key={review.id}>
                                 <Card className="mt-4 border-spacing-1 rounded-[18px] border-slate-300 bg-neutral-200 shadow-md">
                                   <CardTitle className="ml-6 mt-2 text-lg">{user?.name}</CardTitle>
-                                  <CardContent className="mt-auto">{r.content}</CardContent>
+                                  <CardContent className="mt-auto">{review.content}</CardContent>
                                   <CardFooter className="-mb-3 -mt-5 justify-end">
-                                    {r.likes}
+                                    {review.likes}
                                     <Button className="mr-3" size="icon" variant="ghost">
                                       <ThumbsUp className="size-5" />
                                     </Button>
-                                    {r.dislikes}
+                                    {review.dislikes}
                                     <Button size="icon" variant="ghost">
                                       <ThumbsDown className="size-5" />
                                     </Button>
