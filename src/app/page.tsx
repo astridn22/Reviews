@@ -1,5 +1,6 @@
-import {} from "../components/ui/mock_data_sistema_resenas.json";
-import {FileInput, MessageSquareText} from "lucide-react";
+import {MessageSquareText} from "lucide-react";
+import {ThumbsUp} from "lucide-react";
+import {ThumbsDown} from "lucide-react";
 
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
@@ -28,25 +29,8 @@ import {
   DialogFooter,
   DialogClose,
 } from "@/components/ui/dialog";
-
-//const products: [id: number, name: string, description: string, price: number];
-
-const products = [
-  {
-    id: "p1",
-    name: "Auriculares Bluetooth",
-    description: "Auriculares inal\u00e1mbricos con cancelaci\u00f3n de ruido.",
-    price: 59.99,
-    image: "../images/img1.jpg",
-  },
-  {
-    id: "p2",
-    name: "Smartphone Android",
-    description: "Tel\u00e9fono m\u00f3vil con pantalla de 6.5 pulgadas y 128GB de almacenamiento.",
-    price: 299.99,
-    image: "../images/img2.jpg",
-  },
-];
+import {products} from "@/interfaces";
+import {users} from "@/interfaces";
 
 export default function HomePage() {
   return (
@@ -80,7 +64,7 @@ export default function HomePage() {
                       </DialogTrigger>
                       <DialogContent className="rounded-[18px] bg-neutral-100 shadow-lg">
                         <DialogHeader>
-                          <DialogTitle>Agregar Reseña</DialogTitle>
+                          <DialogTitle className="text-xl">Agregar Reseña</DialogTitle>
                         </DialogHeader>
                         <div className="relative mt-4 flex flex-wrap items-center gap-2">
                           <Label className=" text-left" htmlFor="name">
@@ -92,7 +76,7 @@ export default function HomePage() {
                           </Label>
                           <Input id="email" placeholder="peduarte@gmail.com" type="email" />
                           <Label className="mt-3 text-left" htmlFor="coment">
-                            Comentario
+                            Reseña
                           </Label>
                           <Input id="coment" placeholder="Muy buen producto!" />
                         </div>
@@ -119,7 +103,29 @@ export default function HomePage() {
                       </DialogTrigger>
                       <DialogContent className="rounded-[18px] bg-neutral-100 shadow-lg sm:max-w-[425px]">
                         <DialogHeader>
-                          <DialogTitle>Comentarios</DialogTitle>
+                          <DialogTitle className="text-xl">Reseñas</DialogTitle>
+                          {x.review.map((r) => {
+                            const user = users.find((u) => u.id === r.userId);
+
+                            return (
+                              <div key={r.id}>
+                                <Card className="mt-4 border-spacing-1 rounded-[18px] border-slate-300 bg-neutral-200 shadow-md">
+                                  <CardTitle className="ml-6 mt-2 text-lg">{user?.name}</CardTitle>
+                                  <CardContent className="mt-auto">{r.content}</CardContent>
+                                  <CardFooter className="-mb-3 -mt-5 justify-end">
+                                    {r.likes}
+                                    <Button className="mr-3" size="icon" variant="ghost">
+                                      <ThumbsUp className="size-5" />
+                                    </Button>
+                                    {r.dislikes}
+                                    <Button size="icon" variant="ghost">
+                                      <ThumbsDown className="size-5" />
+                                    </Button>
+                                  </CardFooter>
+                                </Card>
+                              </div>
+                            );
+                          })}
                         </DialogHeader>
                       </DialogContent>
                     </Dialog>
