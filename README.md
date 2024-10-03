@@ -1,6 +1,3 @@
-# Reviews
- Aplicación que permite, por el momento, leer reseñas de productos. 
-
 ## Getting Started with Reviews
 
 First, run the development server:
