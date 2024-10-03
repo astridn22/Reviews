@@ -1,5 +1,6 @@
-import {} from "../components/ui/mock_data_sistema_resenas.json";
-import {FileInput, MessageSquareText} from "lucide-react";
+import {MessageSquareText} from "lucide-react";
+import {ThumbsUp} from "lucide-react";
+import {ThumbsDown} from "lucide-react";
 
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
@@ -22,54 +23,37 @@ import {
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
   DialogFooter,
+  DialogClose,
 } from "@/components/ui/dialog";
-
-//const products: [id: number, name: string, description: string, price: number];
-
-const products = [
-  {
-    id: "p1",
-    name: "Auriculares Bluetooth",
-    description: "Auriculares inal\u00e1mbricos con cancelaci\u00f3n de ruido.",
-    price: 59.99,
-    image: "../images/img1.jpg",
-  },
-  {
-    id: "p2",
-    name: "Smartphone Android",
-    description: "Tel\u00e9fono m\u00f3vil con pantalla de 6.5 pulgadas y 128GB de almacenamiento.",
-    price: 299.99,
-    image: "../images/img2.jpg",
-  },
-];
+import {products} from "@/interfaces";
+import {users} from "@/interfaces";
 
 export default function HomePage() {
   return (
     <section className="flex justify-center">
       <Carousel>
         <CarouselContent className="h-[600px] ">
-          {products.map((x) => (
-            <CarouselItem key={x.id} className="basis-auto px-10">
+          {products.map((product) => (
+            <CarouselItem key={product.id} className="basis-auto px-10">
               <div className="p-1">
                 <Card className="my-auto h-[550px] w-[350px] rounded-[18px] bg-neutral-100 shadow-lg">
                   <CardHeader>
                     <img
-                      alt={x.name}
+                      alt={product.name}
                       className="border-opacity-1 mb-2 rounded-[18px] border-2 border-gray-300"
-                      src={x.image}
+                      src={product.image}
                     />
-                    <CardTitle>{x.name}</CardTitle>
+                    <CardTitle>{product.name}</CardTitle>
                     <CardDescription className="text-lg font-semibold tracking-tight text-black">
-                      USD {x.price}
+                      USD {product.price}
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="tracking-tight">
-                    <p>{x.description}</p>
+                    <p>{product.description}</p>
                   </CardContent>
                   <CardFooter className="justify-between">
                     <Dialog>
@@ -78,11 +62,11 @@ export default function HomePage() {
                           Agregar Reseña
                         </Button>
                       </DialogTrigger>
-                      <DialogContent className="rounded-[18px] bg-neutral-100 shadow-lg sm:max-w-[425px]">
+                      <DialogContent className="rounded-[18px] bg-neutral-100 shadow-lg">
                         <DialogHeader>
-                          <DialogTitle>Agregar Reseña</DialogTitle>
+                          <DialogTitle className="text-xl">Agregar Reseña</DialogTitle>
                         </DialogHeader>
-                        <div className="mt-4 flex flex-wrap items-center gap-2">
+                        <div className="relative mt-4 flex flex-wrap items-center gap-2">
                           <Label className=" text-left" htmlFor="name">
                             Nombre
                           </Label>
@@ -92,14 +76,16 @@ export default function HomePage() {
                           </Label>
                           <Input id="email" placeholder="peduarte@gmail.com" type="email" />
                           <Label className="mt-3 text-left" htmlFor="coment">
-                            Comentario
+                            Reseña
                           </Label>
                           <Input id="coment" placeholder="Muy buen producto!" />
                         </div>
                         <DialogFooter className="mt-2 gap-2">
-                          <Button className="border-gray-300" variant="outline">
-                            Cancelar
-                          </Button>
+                          <DialogClose>
+                            <Button className="border-gray-300" variant="outline">
+                              Cancelar
+                            </Button>
+                          </DialogClose>
                           <Button
                             className="bg-[#b2a2bc] tracking-wide text-black hover:bg-[#9e8aab] focus:bg-[#9e8aab] focus:text-white"
                             type="submit"
@@ -117,7 +103,37 @@ export default function HomePage() {
                       </DialogTrigger>
                       <DialogContent className="rounded-[18px] bg-neutral-100 shadow-lg sm:max-w-[425px]">
                         <DialogHeader>
-                          <DialogTitle>Comentarios</DialogTitle>
+                          <DialogTitle className="text-xl">Reseñas</DialogTitle>
+                          {product.reviews.map((review) => {
+                            const user = users.find((user) => user.id === review.userId);
+
+                            return (
+                              <div key={review.id}>
+                                <Card className="mt-4 border-spacing-1 rounded-[18px] border-slate-300 bg-neutral-200 shadow-md">
+                                  <CardTitle className="ml-6 mt-2 text-lg">{user?.name}</CardTitle>
+                                  <CardContent className="mt-auto">{review.content}</CardContent>
+                                  <CardFooter className="-mb-3 -mt-5 justify-end">
+                                    {review.likes}
+                                    <Button
+                                      className=" mr-3 hover:bg-neutral-200"
+                                      size="icon"
+                                      variant="ghost"
+                                    >
+                                      <ThumbsUp className="size-5" />
+                                    </Button>
+                                    {review.dislikes}
+                                    <Button
+                                      className=" hover:bg-neutral-200"
+                                      size="icon"
+                                      variant="ghost"
+                                    >
+                                      <ThumbsDown className="size-5" />
+                                    </Button>
+                                  </CardFooter>
+                                </Card>
+                              </div>
+                            );
+                          })}
                         </DialogHeader>
                       </DialogContent>
                     </Dialog>
