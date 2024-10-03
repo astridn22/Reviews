@@ -114,11 +114,19 @@ export default function HomePage() {
                                   <CardContent className="mt-auto">{review.content}</CardContent>
                                   <CardFooter className="-mb-3 -mt-5 justify-end">
                                     {review.likes}
-                                    <Button className="mr-3" size="icon" variant="ghost">
+                                    <Button
+                                      className=" mr-3 hover:bg-neutral-200"
+                                      size="icon"
+                                      variant="ghost"
+                                    >
                                       <ThumbsUp className="size-5" />
                                     </Button>
                                     {review.dislikes}
-                                    <Button size="icon" variant="ghost">
+                                    <Button
+                                      className=" hover:bg-neutral-200"
+                                      size="icon"
+                                      variant="ghost"
+                                    >
                                       <ThumbsDown className="size-5" />
                                     </Button>
                                   </CardFooter>
